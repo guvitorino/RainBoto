@@ -22,11 +22,11 @@ app.post('/webhook', (req, res) => {
     const data = req.body;
 
     if (data && data.object === 'page') {
-        data.entry.array.forEach((entry) => {
+        data.entry.forEach((entry) => {
             const pageId = entry.id;
             const timeOfEvent = entry.time;
 
-            entry.messanging.forEach((event) => {
+            entry.messaging.forEach((event) => {
                 if (event.message) {
                     responseUser(event);
                 }
