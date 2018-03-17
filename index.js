@@ -73,7 +73,7 @@ const sendMessage = (recipientId, messageText) => {
     callSendAPI(messageData);
 };
 
-app.listen(9000);
+app.listen(5000);
 
 /*const client = new Wit({accessToken: 'WCPZBEGFMN3COY62XVZD4DGL3EN44VLA'});
 client.message('what is the weather in London?', {})
