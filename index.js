@@ -9,9 +9,9 @@ app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: false}));
 
 app.get('/webhook', (req, res) => {
-    if (req.query['hub-mode'] === 'subscribe' && req.query['hub_verify_token'] === 'senha') {
+    if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === 'senha') {
         console.log('Okay');
-        res.status(200).send(req.query['hub-challenge']);
+        res.status(200).send(req.query['hub.challenge']);
     } else {
         console.log('Errrou');
         res.sendStatus(403);
@@ -21,14 +21,14 @@ app.get('/webhook', (req, res) => {
 app.post('/webhook', (req, res) => {
     const data = req.body;
 
-    if (data && data.objetc === 'page') {
+    if (data && data.object === 'page') {
         data.entry.array.forEach((entry) => {
             const pageId = entry.id;
             const timeOfEvent = entry.time;
 
             entry.messanging.forEach((event) => {
                 if (event.message) {
-                    console.log();
+                    responseUser(event);
                 }
             });
         });
